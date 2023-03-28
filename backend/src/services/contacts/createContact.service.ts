@@ -11,7 +11,7 @@ const createContactService = async (
 ) => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const user = await userRepository.findBy({ id: userData.id })[0];
+  const [user] = await userRepository.findBy({ id: userData.id });
 
   const contactRepository = AppDataSource.getRepository(Contact);
 

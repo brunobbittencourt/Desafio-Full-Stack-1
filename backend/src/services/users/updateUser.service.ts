@@ -1,7 +1,7 @@
+import { hashSync } from "bcryptjs";
 import AppDataSource from "../../data-source";
 import User from "../../entities/users.entity";
 import { IUser, IUserUpdate } from "../../interfaces/users";
-import { CreateUserSerializerWithoutPass } from "../../serializers/users.serializers";
 
 const updateUserService = async (
   userData: IUserUpdate,
@@ -9,25 +9,17 @@ const updateUserService = async (
 ): Promise<IUser> => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const findUser = await userRepository.findOneBy({
-    id: userId,
-  });
+  if (userData.password) {
+    userData.password = hashSync(userData.password, 10);
+  }
 
-  const userUpdated = userRepository.create({
-    ...findUser,
+  await userRepository.update(userId, {
     ...userData,
   });
 
-  await userRepository.save(userUpdated);
+  const [user] = await userRepository.findBy({ id: userId });
 
-  const userWithoutPass = await CreateUserSerializerWithoutPass.validate(
-    userUpdated,
-    {
-      stripUnknown: true,
-    }
-  );
-
-  return userWithoutPass;
+  return user;
 };
 
 export default updateUserService;

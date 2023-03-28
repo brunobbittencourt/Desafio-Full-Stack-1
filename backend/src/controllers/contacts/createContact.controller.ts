@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { Request, Response } from "express";
 import { IContact } from "../../interfaces/contacts";
 import { createUserService } from "../../services";
@@ -8,7 +9,7 @@ const createContactController = async (req: Request, res: Response) => {
   const contactData: IContact = req.body;
   const response = await createContactService(contactData, userData);
 
-  return res.status(201).json(response);
+  return res.status(201).json(instanceToPlain(response));
 };
 
 export default createContactController;

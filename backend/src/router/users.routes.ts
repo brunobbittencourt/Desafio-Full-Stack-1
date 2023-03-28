@@ -11,7 +11,10 @@ import {
   validateSchemaMiddleware,
 } from "../middlewares";
 import ensureIsOwner from "../middlewares/users/ensureIsOwnerOrAdmin.middleware";
-import { CreateUserSerializer } from "../serializers/users.serializers";
+import {
+  CreateUserSerializer,
+  UpdateUserSerializer,
+} from "../serializers/users.serializers";
 
 const userRouter = Router();
 
@@ -23,19 +26,12 @@ userRouter.post(
 
 userRouter.get("/profile", ensureAuthMiddleware, listUserController);
 
-userRouter.delete(
-  "/:id",
-  ensureAuthMiddleware,
-  ensureIsOwner,
-  ensureUserExists,
-  deleteUserController
-);
+userRouter.delete("", ensureAuthMiddleware, deleteUserController);
 
 userRouter.patch(
-  "/:id",
+  "",
   ensureAuthMiddleware,
-  ensureIsOwner,
-  ensureUserExists,
+  validateSchemaMiddleware(UpdateUserSerializer),
   updateUserController
 );
 

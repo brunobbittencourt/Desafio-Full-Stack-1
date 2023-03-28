@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { deleteUserService } from "../../services";
 
 const deleteUserController = async (req: Request, res: Response) => {
-  const userId = req.params.id;
+  const userId = req.user.id;
 
   await deleteUserService(userId);
 

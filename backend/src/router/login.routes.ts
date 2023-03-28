@@ -10,3 +10,5 @@ loginRouter.post(
   validateSchemaMiddleware(LoginSerializer),
   loginController
 );
+
+export default loginRouter;
