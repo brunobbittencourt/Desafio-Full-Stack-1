@@ -5,7 +5,9 @@ import { loginRouter, userRouter } from "./router";
 import handleError from "./errors/handleError";
 import contactsRouter from "./router/contacts.router";
 
+const cors = require("cors");
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.use("/users", userRouter);
