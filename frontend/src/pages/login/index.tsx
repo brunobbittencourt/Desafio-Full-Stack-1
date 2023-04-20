@@ -9,7 +9,6 @@ export default function Login() {
       <Header page="login" />
       <StyledLogin>
         <LoginForm />
-        <Link href={"/register"}>Registrar-se</Link>
       </StyledLogin>
     </>
   );

@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { UserContext } from "@/providers/user";
 import { useContext } from "react";
+import { StyledRegisterForm } from "./style";
 
 export function RegisterForm() {
   const { createUser } = useContext(UserContext);
@@ -25,7 +26,7 @@ export function RegisterForm() {
   } = useForm<IUserData>({ resolver: yupResolver(schema) });
   return (
     <>
-      <section>
+      <StyledRegisterForm>
         <h2>Cadastro</h2>
         <form onSubmit={handleSubmit(createUser)}>
           <input placeholder="Nome Completo" {...register("fullName")}></input>
@@ -52,7 +53,7 @@ export function RegisterForm() {
 
           <button type="submit">Cadastrar</button>
         </form>
-      </section>
+      </StyledRegisterForm>
     </>
   );
 }

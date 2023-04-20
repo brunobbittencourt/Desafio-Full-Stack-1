@@ -1,4 +1,5 @@
 import { IContact } from "@/interfaces/contact.interfaces";
+import { StyledContact } from "./style";
 
 export const Contact = ({
   contact,
@@ -8,10 +9,10 @@ export const Contact = ({
   onOpen: () => void;
 }) => {
   return (
-    <li onClick={onOpen}>
-      {contact.fullName}
-      {contact.email}
-      {contact.phone}
-    </li>
+    <StyledContact onClick={onOpen}>
+      <span>{contact.fullName}</span>
+      <span>{contact.email}</span>
+      <span>{contact.phone}</span>
+    </StyledContact>
   );
 };

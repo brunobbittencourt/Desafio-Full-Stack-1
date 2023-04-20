@@ -90,10 +90,10 @@ export function UpdateDeleteContact({
                 type="button"
                 onClick={() => deleteContact(contact?.id!, onClose)}
               >
-                Deletar Contato
+                Deletar
               </Button>
               <Button colorScheme="blue" mr={3} type="submit">
-                Atualizar Contato
+                Atualizar
               </Button>
             </ModalFooter>
           </form>

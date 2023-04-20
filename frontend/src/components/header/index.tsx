@@ -1,6 +1,7 @@
 import { UserContext } from "@/providers/user";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
+import { StyledHeader } from "./style";
 
 export const Header = ({
   page,
@@ -15,11 +16,11 @@ export const Header = ({
         return <button onClick={() => router.push("/login")}>Login</button>;
       case "login":
         return (
-          <button onClick={() => router.push("/register")}>Registro</button>
+          <button onClick={() => router.push("/register")}>Cadastro</button>
         );
       case "dashboard":
         return <button onClick={logOut}>Logout</button>;
     }
   };
-  return <header>{switchButton()}</header>;
+  return <StyledHeader>{switchButton()}</StyledHeader>;
 };

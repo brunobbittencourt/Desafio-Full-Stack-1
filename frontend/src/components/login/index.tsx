@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { UserContext } from "@/providers/user";
 import { useContext } from "react";
+import { StyledLoginForm } from "./style";
 
 export function LoginForm() {
   const { login } = useContext(UserContext);
@@ -19,7 +20,7 @@ export function LoginForm() {
   } = useForm<ILogin>({ resolver: yupResolver(schema) });
   return (
     <>
-      <section>
+      <StyledLoginForm>
         <h2>Login</h2>
         <form onSubmit={handleSubmit(login)}>
           <input placeholder="E-Mail" {...register("email")}></input>
@@ -32,7 +33,7 @@ export function LoginForm() {
           {errors.password?.message && <span>{errors.password?.message}</span>}
           <button type="submit">Login</button>
         </form>
-      </section>
+      </StyledLoginForm>
     </>
   );
 }
